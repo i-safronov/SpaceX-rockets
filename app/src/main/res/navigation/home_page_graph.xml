@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_page_graph"
-    app:startDestination="@id/fragmentRocketDetails">
-
+    app:startDestination="@id/fragmentHomePage">
     <fragment
-        android:id="@+id/fragmentRocketDetails"
-        android:name="com.safronov.spacex_rockets.presentation.fragment.rocket_details.FragmentRocketDetails"
-        android:label="fragment_rocket_details"
-        tools:layout="@layout/fragment_rocket_details" />
+        android:id="@+id/fragmentHomePage"
+        android:name="com.safronov.spacex_rockets.presentation.fragment.home_page.FragmentHomePage"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
 </navigation>

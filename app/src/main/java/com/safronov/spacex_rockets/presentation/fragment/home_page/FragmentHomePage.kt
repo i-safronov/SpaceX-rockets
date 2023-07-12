@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.safronov.spacex_rockets.databinding.FragmentHomePageBinding
+import com.safronov.spacex_rockets.presentation.fragment.home_page.view_model.FragmentHomePageViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentHomePage : Fragment() {
 
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
+
+    private val fragmentHomePageViewModel by viewModel<FragmentHomePageViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
