@@ -12,5 +12,6 @@
     <color name="gray">#212121</color>
     <color name="light_gray">#595959</color>
     <color name="icon">#CACACA</color>
+    <color name="ripple_color">#668E8E8F</color>
 
 </resources>
