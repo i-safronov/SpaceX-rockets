@@ -1,7 +1,7 @@
 package com.safronov.data.repository
 
 import com.safronov.data.network.service.RocketNetworkServiceInt
-import com.safronov.domain.model.rocket.ListOfRocket
+import com.safronov.domain.model.rocket.ListOfRockets
 import com.safronov.domain.repository.RocketRepositoryInt
 import com.safronov.spacex_rockets.core.extension.logE
 
@@ -9,7 +9,7 @@ class RocketRepositoryIntImpl(
     private val rocketNetworkServiceInt: RocketNetworkServiceInt
 ): RocketRepositoryInt {
 
-    override suspend fun getListOfRockets(): ListOfRocket? {
+    override suspend fun getListOfRockets(): ListOfRockets? {
         try {
             val response = rocketNetworkServiceInt.getListOfRockets()
             if (response.isSuccessful) {

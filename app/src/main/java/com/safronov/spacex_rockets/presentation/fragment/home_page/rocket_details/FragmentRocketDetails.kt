@@ -1,4 +1,4 @@
-package com.safronov.spacex_rockets.presentation.fragment.rocket_details
+package com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,6 +29,7 @@ class FragmentRocketDetails : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = FragmentRocketDetails()
+        const val ROCKET = "Rocket"
     }
 
 }

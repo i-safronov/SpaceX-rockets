@@ -92,4 +92,6 @@ dependencies {
     //Logging interceprot:
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
+    implementation 'me.relex:circleindicator:2.1.6'
+
 }

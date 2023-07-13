@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray"
-    tools:context=".presentation.fragment.rocket_details.FragmentRocketDetails">
+    tools:context=".presentation.fragment.home_page.rocket_details.FragmentRocketDetails">
 
     <ImageView
         android:id="@+id/rocket_img"

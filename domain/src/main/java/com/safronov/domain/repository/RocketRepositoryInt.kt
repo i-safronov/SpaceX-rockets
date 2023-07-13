@@ -1,10 +1,10 @@
 package com.safronov.domain.repository
 
-import com.safronov.domain.model.rocket.ListOfRocket
+import com.safronov.domain.model.rocket.ListOfRockets
 
 
 interface RocketRepositoryInt {
 
-    suspend fun getListOfRockets(): ListOfRocket?
+    suspend fun getListOfRockets(): ListOfRockets?
 
 }

@@ -1,6 +1,6 @@
 package com.safronov.domain.model.rocket
 
-data class ListOfRocketItem(
+data class Rocket(
     val active: Boolean,
     val boosters: Int,
     val company: String,
@@ -23,4 +23,4 @@ data class ListOfRocketItem(
     val success_rate_pct: Int,
     val type: String,
     val wikipedia: String
-)
+): java.io.Serializable
