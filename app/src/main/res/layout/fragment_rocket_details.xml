@@ -14,8 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/rocket" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/before_end_img"
@@ -52,14 +51,14 @@
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxLines="5"
-                app:layout_constraintBottom_toBottomOf="@+id/img_setting"
+                app:layout_constraintBottom_toBottomOf="@+id/img_settings"
                 app:layout_constraintEnd_toStartOf="@+id/img_setting"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_setting"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Falcon Heavy" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/img_setting"
+                android:id="@+id/img_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -75,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="img_setting,tv_rocket_name" />
+                app:constraint_referenced_ids="img_settings,tv_rocket_name" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_rocket_details"
