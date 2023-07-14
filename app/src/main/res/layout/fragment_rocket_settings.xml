@@ -135,6 +135,7 @@
             app:layout_constraintTop_toBottomOf="@+id/height_barrier">
 
             <RadioButton
+                android:id="@+id/r_button_rocket_diameter_m"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_weight="1"
@@ -145,6 +146,7 @@
                 android:textColor="@drawable/radio_button_selector_text" />
 
             <RadioButton
+                android:id="@+id/r_button_rocket_diameter_ft"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="8dp"
@@ -191,6 +193,7 @@
             app:layout_constraintTop_toBottomOf="@+id/diameter_barrier">
 
             <RadioButton
+                android:id="@+id/r_button_rocket_mass_kg"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_weight="1"
@@ -201,6 +204,7 @@
                 android:textColor="@drawable/radio_button_selector_text" />
 
             <RadioButton
+                android:id="@+id/r_button_rocket_mass_lb"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="8dp"
@@ -247,6 +251,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mass_barrier">
 
             <RadioButton
+                android:id="@+id/r_button_rocket_payload_kg"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_weight="1"
@@ -257,6 +262,7 @@
                 android:textColor="@drawable/radio_button_selector_text" />
 
             <RadioButton
+                android:id="@+id/r_button_rocket_payload_lb"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="8dp"
