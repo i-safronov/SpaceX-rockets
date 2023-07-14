@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,52 +8,269 @@
     android:orientation="vertical"
     android:background="@color/black">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_show_fragment_name"
-        style="@style/text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ellipsize="end"
-        android:maxLines="5"
-        android:layout_marginEnd="16dp"
-        android:text="@string/settings"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_cancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_cancel"
-        style="@style/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:maxLines="5"
-        android:textSize="18sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/close" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="tv_show_fragment_name,tv_cancel"
-        app:barrierDirection="bottom" />
-
-    <include
-        android:id="@+id/rocket_settings_element"
-        layout="@layout/rocket_settings_element"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/barrier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_show_fragment_name"
+            style="@style/text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:layout_marginEnd="16dp"
+            android:text="@string/settings"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cancel"
+            style="@style/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/close" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_show_fragment_name,tv_cancel"
+            app:barrierDirection="bottom" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_show_rocket_height"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/radioGroup1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/radioGroup1"
+            android:text="@string/height" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/radio_group_shape"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_show_fragment_name">
+
+            <RadioButton
+                android:id="@+id/r_button_rocket_height_m"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="m"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+            <RadioButton
+                android:id="@+id/r_button_rocket_height_ft"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="ft"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/height_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_show_rocket_height,radioGroup1"
+            app:barrierDirection="bottom"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_show_rocket_diameter"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/diameter"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/radioGroup2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/radioGroup2" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/radio_group_shape"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/height_barrier">
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="m"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="ft"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/diameter_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_show_rocket_diameter,radioGroup2"
+            app:barrierDirection="bottom"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_show_rocket_mass"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/mass"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/radioGroup3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/radioGroup3" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/radio_group_shape"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diameter_barrier">
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="kg"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="lb"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/mass_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_show_rocket_mass,radioGroup3"
+            app:barrierDirection="bottom"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_show_rocket_payload"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/payload"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/radioGroup4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/radioGroup4" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/radio_group_shape"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mass_barrier">
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="kg"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+            <RadioButton
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="lb"
+                android:textColor="@drawable/radio_button_selector_text" />
+
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

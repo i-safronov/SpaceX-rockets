@@ -45,4 +45,8 @@ class RocketSettingsSharedPreferencesIntImpl(
         return sharedPreferences.getString(TYPE_ROCKET_MASS_MEASUREMENT, NO_DATA_STRING).toString()
     }
 
+    companion object {
+        const val ROCKET_SETTINGS_SHARED_PREFERENCES = "Rocket settings shared preferences"
+    }
+
 }
