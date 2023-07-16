@@ -37,9 +37,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:paddingBottom="64dp">
 
@@ -51,6 +49,7 @@
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxLines="5"
+                android:layout_marginStart="32dp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_settings"
                 app:layout_constraintEnd_toStartOf="@+id/img_settings"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +63,7 @@
                 android:background="@null"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
+                android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_settings"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -80,6 +80,9 @@
                 android:id="@+id/rcv_rocket_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="22dp"
+                android:paddingEnd="22dp"
+                android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +96,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_details"
                 tools:itemCount="3"
@@ -108,6 +113,8 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +129,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_show_first_stage"
                 tools:itemCount="3"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 tools:listitem="@layout/rcv_item_rocket_header_info" />
 
@@ -135,6 +144,8 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +161,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_show_second_stage"
                 tools:itemCount="1"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 tools:listitem="@layout/rcv_item_rocket_header_info" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -158,6 +171,8 @@
                 android:layout_height="wrap_content"
                 style="@style/button"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
                 app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_second_stage_details"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
