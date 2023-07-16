@@ -33,6 +33,8 @@ class FragmentRocketDetails : Fragment() {
     private var currentRocket: Rocket? = null
     private val rcvRocketDetails = RcvRocketDetails()
     private val rcvRocketInfo = RcvRocketInfo()
+    private val rcvRocketFistStage = RcvRocketInfo()
+    private val rcvRocketSecondStage = RcvRocketInfo()
 
     private val fragmentRocketDetailsViewModel by viewModel<FragmentRocketDetailsViewModel>()
 
@@ -55,6 +57,10 @@ class FragmentRocketDetails : Fragment() {
         binding.rcvRocketDetails.adapter = rcvRocketDetails
         binding.rcvRocketInfo.layoutManager = LinearLayoutManager(requireContext())
         binding.rcvRocketInfo.adapter = rcvRocketInfo
+        binding.rcvRocketFirstStageDetails.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvRocketFirstStageDetails.adapter = rcvRocketFistStage
+        binding.rcvRocketSecondStageDetails.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvRocketSecondStageDetails.adapter = rcvRocketSecondStage
     }
 
     private fun getArgsAsRocket(): Rocket? {
@@ -85,7 +91,33 @@ class FragmentRocketDetails : Fragment() {
                 rcvRocketDetails.submitList(it)
             })
             bindRocketInfo(rocket = rocket)
+            bindFirstStage(rocket = rocket)
+            bindSecondStage(rocket = rocket)
         }
+    }
+
+    private fun bindFirstStage(rocket: Rocket) {
+        val list: List<RocketInfo> = getListOfRocketFirstStage(rocket = rocket)
+        rcvRocketFistStage.submitList(list)
+    }
+
+    private fun bindSecondStage(rocket: Rocket) {
+        val list: List<RocketInfo> = getListOfRocketSecondStage(rocket = rocket)
+        rcvRocketSecondStage.submitList(list)
+    }
+
+    private fun getListOfRocketFirstStage(rocket: Rocket): List<RocketInfo> {
+        val ri1 = RocketInfo(title = rocket.first_stage.engines.toString(), subTitle = getString(R.string.engines_count))
+        val ri2 = RocketInfo(title = rocket.first_stage.fuel_amount_tons.toString(), subTitle = getString(R.string.fuel_amount_tons_count))
+        val ri3 = RocketInfo(title = rocket.first_stage.burn_time_sec.toString(), subTitle = getString(R.string.burn_time_sec))
+        return listOf(ri1, ri2, ri3)
+    }
+
+    private fun getListOfRocketSecondStage(rocket: Rocket): List<RocketInfo> {
+        val ri1 = RocketInfo(title = rocket.second_stage.engines.toString(), subTitle = getString(R.string.engines_count))
+        val ri2 = RocketInfo(title = rocket.second_stage.fuel_amount_tons.toString(), subTitle = getString(R.string.fuel_amount_tons_count))
+        val ri3 = RocketInfo(title = rocket.second_stage.burn_time_sec.toString(), subTitle = getString(R.string.burn_time_sec))
+        return listOf(ri1, ri2, ri3)
     }
 
     private fun bindRocketInfo(rocket: Rocket) {

@@ -14,4 +14,7 @@
     <string name="first_flight">Первый запуск</string>
     <string name="country">Страна</string>
     <string name="cost_per_launch">Стоимость запуска</string>
+    <string name="engines_count">Количество двигателей</string>
+    <string name="fuel_amount_tons_count">Количество топлива</string>
+    <string name="burn_time_sec">Время сгорания</string>
 </resources>
