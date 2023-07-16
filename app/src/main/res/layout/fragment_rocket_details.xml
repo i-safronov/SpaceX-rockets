@@ -1,185 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/black"
     tools:context=".presentation.fragment.home_page.rocket_details.FragmentRocketDetails">
 
-    <ImageView
-        android:id="@+id/rocket_img"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/img_height"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:paddingBottom="64dp">
 
-    <View
-        android:id="@+id/before_end_img"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rocket_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/shape_as_bottom_sheet_dialog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/before_end_img">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/rocket_img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:paddingBottom="64dp">
+            android:layout_height="@dimen/img_height"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/rocket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_rocket_name"
-                style="@style/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:maxLines="5"
-                android:layout_marginStart="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_settings"
-                app:layout_constraintEnd_toStartOf="@+id/img_settings"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Falcon Heavy" />
+        <View
+            android:id="@+id/before_end_img"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toBottomOf="@+id/rocket_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/img_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:layout_marginEnd="24dp"
-                android:src="@drawable/ic_settings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@+id/before_end_img"
+           app:layout_constraintStart_toStartOf="parent"
+           android:background="@drawable/shape_as_bottom_sheet_dialog"
+           android:paddingTop="16dp"
+           app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="img_settings,tv_rocket_name" />
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_rocket_name"
+               style="@style/title"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginEnd="8dp"
+               android:ellipsize="end"
+               android:maxLines="5"
+               app:layout_constraintBottom_toBottomOf="@+id/img_settings"
+               app:layout_constraintEnd_toStartOf="@+id/img_settings"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:text="Falcon Heavy" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_rocket_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="22dp"
-                android:paddingEnd="22dp"
-                android:clipToPadding="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier"
-                tools:itemCount="1"
-                tools:listitem="@layout/rcv_rocket_detail" />
+           <androidx.appcompat.widget.AppCompatImageButton
+               android:id="@+id/img_settings"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="24dp"
+               android:background="@null"
+               android:minWidth="48dp"
+               android:minHeight="48dp"
+               android:src="@drawable/ic_settings"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:ignore="SpeakableTextPresentCheck" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_rocket_header_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_details"
-                tools:itemCount="3"
-                tools:listitem="@layout/rcv_item_rocket_header_info" />
+           <androidx.constraintlayout.widget.Barrier
+               android:id="@+id/barrier"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:barrierDirection="bottom"
+               app:constraint_referenced_ids="img_settings,tv_rocket_name" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_show_first_stage"
-                style="@style/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/first_stage"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_header_info" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcv_rocket_details"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:clipToPadding="false"
+               android:paddingStart="22dp"
+               android:paddingEnd="22dp"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/barrier"
+               tools:itemCount="1"
+               tools:listitem="@layout/rcv_rocket_detail" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_rocket_first_stage_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_show_first_stage"
-                tools:itemCount="3"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                tools:listitem="@layout/rcv_item_rocket_header_info" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcv_rocket_info"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="32dp"
+               android:background="@color/black"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_details"
+               tools:itemCount="3"
+               tools:listitem="@layout/rcv_item_rocket_info" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_show_second_stage"
-                style="@style/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/second_stage"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_first_stage_details" />
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_show_first_stage"
+               style="@style/text"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="32dp"
+               android:text="@string/first_stage"
+               android:textAllCaps="true"
+               android:textColor="@color/white"
+               android:textSize="16sp"
+               android:textStyle="bold"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_info" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_rocket_second_stage_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_show_second_stage"
-                tools:itemCount="1"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                tools:listitem="@layout/rcv_item_rocket_header_info" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcv_rocket_first_stage_details"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="32dp"
+               android:background="@color/black"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_show_first_stage"
+               tools:itemCount="3"
+               tools:listitem="@layout/rcv_item_rocket_info" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_show_launches"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/button"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_second_stage_details"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/show_launches" />
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_show_second_stage"
+               style="@style/text"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="32dp"
+               android:text="@string/second_stage"
+               android:textAllCaps="true"
+               android:textColor="@color/white"
+               android:textSize="16sp"
+               android:textStyle="bold"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_first_stage_details" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcv_rocket_second_stage_details"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="32dp"
+               android:background="@color/black"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_show_second_stage"
+               tools:itemCount="1"
+               tools:listitem="@layout/rcv_item_rocket_info" />
 
-    </androidx.core.widget.NestedScrollView>
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btn_show_launches"
+               style="@style/button"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="32dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="32dp"
+               android:text="@string/show_launches"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/rcv_rocket_second_stage_details" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

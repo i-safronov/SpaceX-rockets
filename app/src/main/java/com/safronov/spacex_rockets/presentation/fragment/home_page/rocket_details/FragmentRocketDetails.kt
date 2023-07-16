@@ -16,11 +16,11 @@ import com.safronov.domain.model.rocket.Rocket
 import com.safronov.spacex_rockets.R
 import com.safronov.spacex_rockets.core.extension.logE
 import com.safronov.spacex_rockets.databinding.FragmentRocketDetailsBinding
-import com.safronov.spacex_rockets.databinding.RcvRocketDetailBinding
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.model.RocketDetails
+import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.model.RocketInfo
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketDetails
+import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketInfo
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.view_model.FragmentRocketDetailsViewModel
-import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_settings.FragmentRocketSettings
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,6 +32,7 @@ class FragmentRocketDetails : Fragment() {
     private val binding get() = _binding!!
     private var currentRocket: Rocket? = null
     private val rcvRocketDetails = RcvRocketDetails()
+    private val rcvRocketInfo = RcvRocketInfo()
 
     private val fragmentRocketDetailsViewModel by viewModel<FragmentRocketDetailsViewModel>()
 
@@ -52,6 +53,8 @@ class FragmentRocketDetails : Fragment() {
     private fun initRcv() {
         binding.rcvRocketDetails.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rcvRocketDetails.adapter = rcvRocketDetails
+        binding.rcvRocketInfo.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvRocketInfo.adapter = rcvRocketInfo
     }
 
     private fun getArgsAsRocket(): Rocket? {
@@ -81,7 +84,20 @@ class FragmentRocketDetails : Fragment() {
             getListOfRocketDetailsFromRocket(rocket = rocket, result = {
                 rcvRocketDetails.submitList(it)
             })
+            bindRocketInfo(rocket = rocket)
         }
+    }
+
+    private fun bindRocketInfo(rocket: Rocket) {
+        val list: List<RocketInfo> = getListOfRocketInfo(rocket)
+        rcvRocketInfo.submitList(list)
+    }
+
+    private fun getListOfRocketInfo(rocket: Rocket): List<RocketInfo> {
+        val ri1 = RocketInfo(title = rocket.first_flight, subTitle = getString(R.string.first_flight))
+        val ri2 = RocketInfo(title = rocket.country, subTitle = getString(R.string.country))
+        val ri3 = RocketInfo(title = "${rocket.cost_per_launch}$", subTitle = getString(R.string.cost_per_launch))
+        return listOf(ri1, ri2, ri3)
     }
 
     private fun getListOfRocketDetailsFromRocket(rocket: Rocket, result: (List<RocketDetails>) -> Unit) {

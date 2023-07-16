@@ -11,4 +11,7 @@
     <string name="diameter">Диаметр</string>
     <string name="mass">Масса</string>
     <string name="payload">Полезная нагрузка</string>
+    <string name="first_flight">Первый запуск</string>
+    <string name="country">Страна</string>
+    <string name="cost_per_launch">Стоимость запуска</string>
 </resources>
