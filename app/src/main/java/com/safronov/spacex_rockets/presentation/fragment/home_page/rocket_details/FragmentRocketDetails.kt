@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.safronov.domain.model.UnitOfMeasurementRocketDiameter
+import com.safronov.domain.model.UnitOfMeasurementRocketHeight
+import com.safronov.domain.model.UnitOfMeasurementRocketMass
+import com.safronov.domain.model.UnitOfMeasurementRocketPayload
 import com.safronov.domain.model.rocket.Rocket
 import com.safronov.spacex_rockets.R
 import com.safronov.spacex_rockets.core.extension.logE
@@ -14,8 +19,12 @@ import com.safronov.spacex_rockets.databinding.FragmentRocketDetailsBinding
 import com.safronov.spacex_rockets.databinding.RcvRocketDetailBinding
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.model.RocketDetails
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketDetails
+import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.view_model.FragmentRocketDetailsViewModel
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_settings.FragmentRocketSettings
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentRocketDetails : Fragment() {
 
@@ -23,6 +32,8 @@ class FragmentRocketDetails : Fragment() {
     private val binding get() = _binding!!
     private var currentRocket: Rocket? = null
     private val rcvRocketDetails = RcvRocketDetails()
+
+    private val fragmentRocketDetailsViewModel by viewModel<FragmentRocketDetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,33 +78,64 @@ class FragmentRocketDetails : Fragment() {
         currentRocket?.let { rocket ->
             Picasso.get().load(rocket.flickr_images.firstOrNull()).into(binding.rocketImg)
             binding.tvRocketName.text = rocket.name
-            rcvRocketDetails.submitList(getListOfRocketDetailsFromRocket(rocket = rocket))
+            getListOfRocketDetailsFromRocket(rocket = rocket, result = {
+                rcvRocketDetails.submitList(it)
+            })
         }
     }
 
-    private fun getListOfRocketDetailsFromRocket(rocket: Rocket): List<RocketDetails> {
-        //TODO Write code to get rocket instances depending on the choice of rocket units
-        val height = rocket.height.feet
-        val diameter = rocket.diameter.feet
-        val mass = rocket.mass.lb
-        val payload = rocket.payload_weights.get(0).lb
-        val rcD1 = RocketDetails(
-            title = height.toString(),
-            subTitle = "Высота, ft"
-        )
-        val rcD2 = RocketDetails(
-            title = diameter.toString(),
-            subTitle = "Диаметр, ft"
-        )
-        val rcD3 = RocketDetails(
-            title = mass.toString(),
-            subTitle = "Масса, lb"
-        )
-        val rcD4 = RocketDetails(
-            title = payload.toString(),
-            subTitle = "Нагрузка, ft"
-        )
-        return listOf(rcD1, rcD2, rcD3, rcD4)
+    private fun getListOfRocketDetailsFromRocket(rocket: Rocket, result: (List<RocketDetails>) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            val rcD1 = getRocketDetailsHeight(rocket = rocket)
+            val rcD2 = getRocketDetailsDiameter(rocket = rocket)
+            val rcD3 = getRocketDetailsMass(rocket = rocket)
+            val rcD4 = getRocketDetailsPayload(rocket = rocket)
+            result.invoke(listOf(rcD1, rcD2, rcD3, rcD4))
+        }
+    }
+
+    private suspend fun getRocketDetailsHeight(rocket: Rocket): RocketDetails {
+        val height = fragmentRocketDetailsViewModel.getTypeRocketHeightMeasurement()
+        var title = ""
+        if (height.trim().toLowerCase() == UnitOfMeasurementRocketHeight.M.toString().trim().toLowerCase()) {
+            title = rocket.height.meters.toString()
+        } else if (height.trim().toLowerCase() == UnitOfMeasurementRocketHeight.FT.toString().trim().toLowerCase()) {
+            title = rocket.height.feet.toString()
+        }
+        return RocketDetails(title = title, subTitle = "${getString(R.string.height)}, ${height.trim().toLowerCase()}")
+    }
+
+    private suspend fun getRocketDetailsDiameter(rocket: Rocket): RocketDetails {
+        val diameter = fragmentRocketDetailsViewModel.getTypeRocketDiameterMeasurement()
+        var title = ""
+        if (diameter.trim().toLowerCase() == UnitOfMeasurementRocketDiameter.M.toString().trim().toLowerCase()) {
+            title = rocket.diameter.meters.toString()
+        } else if (diameter.trim().toLowerCase() == UnitOfMeasurementRocketDiameter.FT.toString().trim().toLowerCase()) {
+            title = rocket.diameter.feet.toString()
+        }
+        return RocketDetails(title = title, subTitle = "${getString(R.string.diameter)}, ${diameter.trim().toLowerCase()}")
+    }
+
+    private suspend fun getRocketDetailsMass(rocket: Rocket): RocketDetails {
+        val mass = fragmentRocketDetailsViewModel.getTypeRocketMassMeasurement()
+        var title = ""
+        if (mass.trim().toLowerCase() == UnitOfMeasurementRocketMass.KG.toString().trim().toLowerCase()) {
+            title = rocket.mass.kg.toString()
+        } else if (mass.trim().toLowerCase() == UnitOfMeasurementRocketMass.LB.toString().trim().toLowerCase()) {
+            title = rocket.mass.lb.toString()
+        }
+        return RocketDetails(title = title, subTitle = "${getString(R.string.mass)}, ${mass.trim().toLowerCase()}")
+    }
+
+    private suspend fun getRocketDetailsPayload(rocket: Rocket): RocketDetails {
+        val payload = fragmentRocketDetailsViewModel.getTypeRocketPayloadMeasurement()
+        var title = ""
+        if (payload.trim().toLowerCase() == UnitOfMeasurementRocketPayload.KG.toString().trim().toLowerCase()) {
+            title = rocket.payload_weights.first().kg.toString()
+        } else if (payload.trim().toLowerCase() == UnitOfMeasurementRocketPayload.LB.toString().trim().toLowerCase()) {
+            title = rocket.payload_weights.first().lb.toString()
+        }
+        return RocketDetails(title = title, subTitle = "${getString(R.string.payload)}, ${payload.trim().toLowerCase()}")
     }
 
     override fun onDestroyView() {
