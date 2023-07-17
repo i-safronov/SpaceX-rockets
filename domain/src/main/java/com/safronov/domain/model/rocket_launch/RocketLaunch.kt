@@ -1,10 +1,10 @@
 package com.safronov.domain.model.rocket_launch
 
-data class  RocketLaunch(
+data class RocketLaunch(
     val auto_update: Boolean,
     val capsules: List<String>,
     val cores: List<Core>,
-    val crew: List<Crew>,
+    val crew: List<String>,
     val date_local: String,
     val date_precision: String,
     val date_unix: Int,

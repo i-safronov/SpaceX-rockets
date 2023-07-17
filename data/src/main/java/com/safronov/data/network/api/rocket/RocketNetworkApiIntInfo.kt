@@ -1,4 +1,4 @@
-package com.safronov.data.network.api
+package com.safronov.data.network.api.rocket
 
 object RocketNetworkApiIntInfo {
 

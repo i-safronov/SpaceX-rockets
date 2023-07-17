@@ -1,13 +1,12 @@
 package com.safronov.spacex_rockets.di
 
 import android.content.Context
-import com.safronov.data.network.api.RocketNetworkApiInt
-import com.safronov.data.network.api.RocketNetworkApiIntInfo
+import com.safronov.data.network.api.rocket.RocketNetworkApiInt
+import com.safronov.data.network.api.rocket.RocketNetworkApiIntInfo
 import com.safronov.data.network.service.RocketNetworkServiceInt
 import com.safronov.data.network.service.RocketNetworkServiceIntImpl
 import com.safronov.data.storage.RocketSettingsSharedPreferencesInt
 import com.safronov.data.storage.RocketSettingsSharedPreferencesIntImpl
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
