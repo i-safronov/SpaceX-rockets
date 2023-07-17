@@ -23,7 +23,7 @@
         tools:text="Falcon Heavy" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_sub_title"
+        android:id="@+id/tv_date"
         style="@style/text"
         android:layout_width="0dp"
         android:layout_marginEnd="8dp"
@@ -44,7 +44,7 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:src="@drawable/rocket_success"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_sub_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_mission_name"
         tools:ignore="SpeakableTextPresentCheck" />
