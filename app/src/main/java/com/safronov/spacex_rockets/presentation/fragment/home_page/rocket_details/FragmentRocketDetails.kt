@@ -45,6 +45,7 @@ class FragmentRocketDetails : Fragment() {
         _binding = FragmentRocketDetailsBinding.inflate(inflater, container, false)
         try {
             currentRocket = getArgsAsRocket()
+            logE("Current rocket id: ${currentRocket?.id}")
             initRcv()
         } catch (e: Exception) {
             logE("${this.javaClass.name} -> ${object {}.javaClass.enclosingMethod?.name}, ${e.message}")
@@ -72,8 +73,15 @@ class FragmentRocketDetails : Fragment() {
         try {
             bindView()
             imgSettingsListener()
+            btnShowLaunchesListener()
         } catch (e: Exception) {
             logE("${this.javaClass.name} -> ${object {}.javaClass.enclosingMethod?.name}, ${e.message}")
+        }
+    }
+
+    private fun btnShowLaunchesListener() {
+        binding.btnShowLaunches.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentHomePage_to_fragmentRocketLaunches)
         }
     }
 

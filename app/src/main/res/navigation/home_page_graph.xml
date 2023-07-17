@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_fragmentHomePage_to_fragmentRocketSettings"
             app:destination="@id/fragmentRocketSettings" />
+        <action
+            android:id="@+id/action_fragmentHomePage_to_fragmentRocketLaunches"
+            app:destination="@id/fragmentRocketLaunches" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRocketSettings"
         android:name="com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_settings.FragmentRocketSettings"
         android:label="fragment_rocket_settings"
         tools:layout="@layout/fragment_rocket_settings" />
+    <fragment
+        android:id="@+id/fragmentRocketLaunches"
+        android:name="com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.FragmentRocketLaunches"
+        android:label="fragment_rocket_launches"
+        tools:layout="@layout/fragment_rocket_launches" />
 </navigation>
