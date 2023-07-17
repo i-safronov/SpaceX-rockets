@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +17,13 @@ import com.safronov.domain.model.rocket.Rocket
 import com.safronov.spacex_rockets.R
 import com.safronov.spacex_rockets.core.extension.logE
 import com.safronov.spacex_rockets.databinding.FragmentRocketDetailsBinding
+import com.safronov.spacex_rockets.databinding.FragmentRocketLaunchesBinding
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.model.RocketDetails
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.model.RocketInfo
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketDetails
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketInfo
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.view_model.FragmentRocketDetailsViewModel
+import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.FragmentRocketLaunches
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -81,13 +84,23 @@ class FragmentRocketDetails : Fragment() {
 
     private fun btnShowLaunchesListener() {
         binding.btnShowLaunches.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentHomePage_to_fragmentRocketLaunches)
+            if (currentRocket != null) {
+                findNavController().navigate(
+                    R.id.action_fragmentHomePage_to_fragmentRocketLaunches,
+                    bundleOf(
+                        FragmentRocketLaunches.ROCKET_ID to currentRocket?.id,
+                        FragmentRocketLaunches.ROCKET_NAME to currentRocket?.name
+                    )
+                )
+            }
         }
     }
 
     private fun imgSettingsListener() {
         binding.imgSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentHomePage_to_fragmentRocketSettings)
+            findNavController().navigate(
+                R.id.action_fragmentHomePage_to_fragmentRocketSettings
+            )
         }
     }
 
