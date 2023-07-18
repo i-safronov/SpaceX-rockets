@@ -19,15 +19,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="5"
-            android:layout_marginEnd="16dp"
             android:text="@string/settings"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cancel"
             app:layout_constraintEnd_toStartOf="@+id/tv_cancel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_cancel" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_cancel"
@@ -85,7 +85,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="m"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/r_button_rocket_height_ft"
@@ -98,7 +99,8 @@
                 android:checked="false"
                 android:gravity="center"
                 android:text="ft"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         </RadioGroup>
 
@@ -143,7 +145,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="m"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/r_button_rocket_diameter_ft"
@@ -156,7 +159,8 @@
                 android:checked="false"
                 android:gravity="center"
                 android:text="ft"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </RadioGroup>
 
@@ -201,7 +205,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="kg"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/r_button_rocket_mass_lb"
@@ -214,7 +219,8 @@
                 android:checked="false"
                 android:gravity="center"
                 android:text="lb"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </RadioGroup>
 
@@ -259,7 +265,8 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="kg"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/r_button_rocket_payload_lb"
@@ -272,7 +279,8 @@
                 android:checked="false"
                 android:gravity="center"
                 android:text="lb"
-                android:textColor="@drawable/radio_button_selector_text" />
+                android:textColor="@drawable/radio_button_selector_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </RadioGroup>
 
