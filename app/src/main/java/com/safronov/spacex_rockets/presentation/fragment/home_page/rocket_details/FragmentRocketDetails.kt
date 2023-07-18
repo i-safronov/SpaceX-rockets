@@ -1,6 +1,7 @@
 package com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +74,7 @@ class FragmentRocketDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         try {
+            showUserDataIsLoading()
             bindView()
             imgSettingsListener()
             btnShowLaunchesListener()
@@ -109,6 +111,7 @@ class FragmentRocketDetails : Fragment() {
             binding.tvRocketName.text = rocket.name
             getListOfRocketDetailsFromRocket(rocket = rocket, result = {
                 rcvRocketDetails.submitList(it)
+                showUserDataLoaded()
             })
             bindRocketInfo(rocket = rocket)
             bindFirstStage(rocket = rocket)
@@ -153,12 +156,14 @@ class FragmentRocketDetails : Fragment() {
     }
 
     private fun getListOfRocketDetailsFromRocket(rocket: Rocket, result: (List<RocketDetails>) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val rcD1 = getRocketDetailsHeight(rocket = rocket)
             val rcD2 = getRocketDetailsDiameter(rocket = rocket)
             val rcD3 = getRocketDetailsMass(rocket = rocket)
             val rcD4 = getRocketDetailsPayload(rocket = rocket)
-            result.invoke(listOf(rcD1, rcD2, rcD3, rcD4))
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                result.invoke(listOf(rcD1, rcD2, rcD3, rcD4))
+            }
         }
     }
 
@@ -204,6 +209,14 @@ class FragmentRocketDetails : Fragment() {
             title = rocket.payload_weights.first().lb.toString()
         }
         return RocketDetails(title = title, subTitle = "${getString(R.string.payload)}, ${payload.trim().toLowerCase()}")
+    }
+
+    private fun showUserDataIsLoading() {
+        binding.contentLayout.visibility = View.GONE
+    }
+
+    private fun showUserDataLoaded() {
+        binding.contentLayout.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

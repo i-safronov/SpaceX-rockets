@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.safronov.spacex_rockets.R
 import com.safronov.spacex_rockets.core.extension.logE
 import com.safronov.spacex_rockets.core.extension.toastS
 import com.safronov.spacex_rockets.databinding.FragmentRocketLaunchesBinding
@@ -37,8 +38,10 @@ class FragmentRocketLaunches : Fragment() {
             initRcv()
             initCurrentRocketInfo()
             fragmentRocketLaunchesViewModel.loadRocketLaunches(currentRocketId.toString(), noLaunches = {
-                //TODO write code to show user that no launches!
-
+                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                    Snackbar.make(binding.root, getString(R.string.this_rocket_has_never_been_launched), Snackbar.LENGTH_SHORT).show()
+                    showUserDataLoaded()
+                }
             })
             bindView()
         } catch (e: Exception) {

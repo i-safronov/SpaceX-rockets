@@ -17,4 +17,5 @@
     <string name="engines_count">Количество двигателей</string>
     <string name="fuel_amount_tons_count">Количество топлива</string>
     <string name="burn_time_sec">Время сгорания</string>
+    <string name="this_rocket_has_never_been_launched">Эта ракета никогда не запускалась</string>
 </resources>
