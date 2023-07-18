@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.safronov.spacex_rockets.core.extension.logE
+import com.safronov.spacex_rockets.core.extension.toastS
 import com.safronov.spacex_rockets.databinding.FragmentRocketLaunchesBinding
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.rcv.RcvRocketLaunches
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,7 @@ class FragmentRocketLaunches : Fragment() {
             initCurrentRocketInfo()
             fragmentRocketLaunchesViewModel.loadRocketLaunches(currentRocketId.toString(), noLaunches = {
                 //TODO write code to show user that no launches!
+
             })
             bindView()
         } catch (e: Exception) {

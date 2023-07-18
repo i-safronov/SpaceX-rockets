@@ -27,7 +27,7 @@ class FragmentRocketLaunchesViewModel(
                         rocketLaunchesMutableList.add(it)
                     }
                 }
-                if (allRocketLaunches?.isEmpty() == true) {
+                if (rocketLaunchesMutableList.isEmpty()) {
                     noLaunches.invoke()
                 } else {
                     _rocketLaunches.value = rocketLaunchesMutableList.toList()
