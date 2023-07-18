@@ -81,9 +81,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    //Picasso:
-    implementation 'com.squareup.picasso:picasso:2.8'
-
     //Navigation:
     def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -92,6 +89,10 @@ dependencies {
     //Logging interceprot:
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
+    //ViewPager indicator:
     implementation 'me.relex:circleindicator:2.1.6'
+
+    //Glide:
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
 
 }

@@ -1,11 +1,14 @@
 package com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.rcv
 
+import android.location.Geocoder.GeocodeListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.safronov.domain.model.rocket_launch.RocketLaunch
+import com.safronov.spacex_rockets.R
 import com.safronov.spacex_rockets.databinding.RcvItemRocketLaunchBinding
 
 class RcvRocketLaunches() :
@@ -36,6 +39,11 @@ class RcvRocketLaunches() :
             holder.binding.tvMissionName.text = currentList[holder.adapterPosition].name
             //TODO parse [date_local] into normal view for user
             holder.binding.tvDate.text = currentList[holder.adapterPosition].date_local
+            if (currentList[holder.adapterPosition].success) {
+                Glide.with(holder.itemView.context).load(R.drawable.rocket_success).into(holder.binding.rocketIsSuccess)
+            } else {
+                Glide.with(holder.itemView.context).load(R.drawable.rocket_failure).into(holder.binding.rocketIsSuccess)
+            }
         }
     }
 

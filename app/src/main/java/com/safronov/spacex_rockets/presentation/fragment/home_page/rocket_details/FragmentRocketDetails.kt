@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.safronov.domain.model.UnitOfMeasurementRocketDiameter
 import com.safronov.domain.model.UnitOfMeasurementRocketHeight
 import com.safronov.domain.model.UnitOfMeasurementRocketMass
@@ -24,7 +25,6 @@ import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_detail
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.rcv.RcvRocketInfo
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_details.view_model.FragmentRocketDetailsViewModel
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.FragmentRocketLaunches
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -48,7 +48,6 @@ class FragmentRocketDetails : Fragment() {
         _binding = FragmentRocketDetailsBinding.inflate(inflater, container, false)
         try {
             currentRocket = getArgsAsRocket()
-            logE("Current rocket id: ${currentRocket?.id}")
             initRcv()
         } catch (e: Exception) {
             logE("${this.javaClass.name} -> ${object {}.javaClass.enclosingMethod?.name}, ${e.message}")
@@ -106,7 +105,7 @@ class FragmentRocketDetails : Fragment() {
 
     private fun bindView() {
         currentRocket?.let { rocket ->
-            Picasso.get().load(rocket.flickr_images.firstOrNull()).into(binding.rocketImg)
+            Glide.with(binding.root.context).load(rocket.flickr_images.firstOrNull()).into(binding.rocketImg)
             binding.tvRocketName.text = rocket.name
             getListOfRocketDetailsFromRocket(rocket = rocket, result = {
                 rcvRocketDetails.submitList(it)
