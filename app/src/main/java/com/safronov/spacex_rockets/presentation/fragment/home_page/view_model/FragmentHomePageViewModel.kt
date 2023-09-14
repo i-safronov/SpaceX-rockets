@@ -1,7 +1,12 @@
 package com.safronov.spacex_rockets.presentation.fragment.home_page.view_model
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.safronov.domain.model.UnitOfMeasurementRocketDiameter
+import com.safronov.domain.model.UnitOfMeasurementRocketHeight
+import com.safronov.domain.model.UnitOfMeasurementRocketMass
+import com.safronov.domain.model.UnitOfMeasurementRocketPayload
 import com.safronov.domain.model.rocket.ListOfRockets
 import com.safronov.domain.repository.RocketRepositoryInt
 import com.safronov.spacex_rockets.core.extension.logE

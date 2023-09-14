@@ -30,19 +30,27 @@ class RocketSettingsSharedPreferencesIntImpl(
     }
 
     override suspend fun getTypeRocketPayloadMeasurement(): String {
-        return sharedPreferences.getString(TYPE_ROCKET_PAYLOAD_MEASUREMENT, NO_DATA_STRING).toString()
+        return sharedPreferences.getString(TYPE_ROCKET_PAYLOAD_MEASUREMENT,
+            UnitOfMeasurementRocketPayload.KG.toString()
+        ).toString()
     }
 
     override suspend fun getTypeRocketHeightMeasurement(): String {
-       return sharedPreferences.getString(TYPE_ROCKET_HEIGHT_MEASUREMENT, NO_DATA_STRING).toString()
+       return sharedPreferences.getString(TYPE_ROCKET_HEIGHT_MEASUREMENT,
+           UnitOfMeasurementRocketHeight.M.toString()
+       ).toString()
     }
 
     override suspend fun getTypeRocketDiameterMeasurement(): String {
-        return sharedPreferences.getString(TYPE_ROCKET_DIAMETER_MEASUREMENT, NO_DATA_STRING).toString()
+        return sharedPreferences.getString(TYPE_ROCKET_DIAMETER_MEASUREMENT,
+            UnitOfMeasurementRocketDiameter.M.toString()
+        ).toString()
     }
 
     override suspend fun getTypeRocketMassMeasurement(): String {
-        return sharedPreferences.getString(TYPE_ROCKET_MASS_MEASUREMENT, NO_DATA_STRING).toString()
+        return sharedPreferences.getString(TYPE_ROCKET_MASS_MEASUREMENT,
+            UnitOfMeasurementRocketMass.KG.toString()
+        ).toString()
     }
 
     companion object {
