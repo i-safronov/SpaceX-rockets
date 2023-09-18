@@ -7,7 +7,6 @@ private const val TYPE_ROCKET_HEIGHT_MEASUREMENT = "TypeRocketHeightMeasurement"
 private const val TYPE_ROCKET_DIAMETER_MEASUREMENT = "TypeRocketDiameterMeasurement"
 private const val TYPE_ROCKET_MASS_MEASUREMENT = "TypeRocketMassMeasurement"
 private const val TYPE_ROCKET_PAYLOAD_MEASUREMENT = "TypeRocketPayloadMeasurement"
-const val NO_DATA_STRING = ""
 
 class RocketSettingsSharedPreferencesIntImpl(
     private val sharedPreferences: SharedPreferences

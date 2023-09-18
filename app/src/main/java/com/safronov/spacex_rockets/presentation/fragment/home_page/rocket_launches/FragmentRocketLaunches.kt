@@ -15,6 +15,7 @@ import com.safronov.spacex_rockets.core.extension.toastS
 import com.safronov.spacex_rockets.databinding.FragmentRocketLaunchesBinding
 import com.safronov.spacex_rockets.presentation.fragment.home_page.rocket_launches.rcv.RcvRocketLaunches
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,9 +39,13 @@ class FragmentRocketLaunches : Fragment() {
             initRcv()
             initCurrentRocketInfo()
             fragmentRocketLaunchesViewModel.loadRocketLaunches(currentRocketId.toString(), noLaunches = {
-                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-                    Snackbar.make(binding.root, getString(R.string.this_rocket_has_never_been_launched), Snackbar.LENGTH_SHORT).show()
-                    showUserDataLoaded()
+                try {
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                        Snackbar.make(binding.root, getString(R.string.this_rocket_has_never_been_launched), Snackbar.LENGTH_SHORT).show()
+                        showUserDataLoaded()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             })
             bindView()
